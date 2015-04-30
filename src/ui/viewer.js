@@ -117,6 +117,9 @@ var Viewer = exports.Viewer = Widget.extend({
 
             $(this.options.autoViewHighlights)
                 .on("mouseover." + NS, '.annotator-hl', function (event) {
+                    /* If the mouse is over >1 annotation, we still only need
+                     * to handle the event once to show them all. */
+                    event.stopPropagation();
                     self._onHighlightMouseover(event);
                 })
                 .on("mouseleave." + NS, '.annotator-hl', function () {
